@@ -1,6 +1,6 @@
 type FileType = 'pdf' | 'doc' | 'csv' | 'mov';
 
-export interface File {
+export interface BaseFile {
   type: FileType;
   name: string;
   added: string;
@@ -9,7 +9,7 @@ export interface File {
 export interface Folder {
   type: 'folder';
   name: string;
-  files: File[];
+  files: BaseFile[];
 }
 
-export type Item = File | Folder;
+export type Item = BaseFile | Folder;
