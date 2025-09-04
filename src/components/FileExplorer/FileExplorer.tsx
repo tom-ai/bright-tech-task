@@ -24,8 +24,8 @@ export function FileExplorer({ items }: { items: Item[] }) {
         return (
           <li key={item.name}>
             <p>{item.name}</p>
-            {/* <time>{item.added}</time> */}
-            {/* <p>{item.type}</p> */}
+            <p>{item.type}</p>
+            <time>{item.added}</time>
           </li>
         );
       })}
