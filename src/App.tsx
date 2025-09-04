@@ -1,14 +1,12 @@
-import documents from './data/documents.json';
+import { documents } from './data/documents';
 import { useEffect, useState } from 'react';
 import type { Item } from './types/models';
-
-const typedDocs: Item[] = documents;
 
 function App() {
   const [docs, setDocs] = useState<Item[]>([]);
 
   useEffect(() => {
-    setDocs(typedDocs);
+    setDocs(documents);
   }, []);
 
   return (
