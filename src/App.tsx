@@ -12,8 +12,12 @@ function App() {
 
   return (
     <>
-      <h1>Bright Tech Task</h1>
-      <FileExplorer items={items} />
+      <header>
+        <h1>Bright Tech Task</h1>
+      </header>
+      <main>
+        <FileExplorer items={items} />
+      </main>
     </>
   );
 }
