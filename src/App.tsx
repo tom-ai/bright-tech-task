@@ -3,14 +3,16 @@ import { useEffect, useState } from 'react';
 import type { Item } from './types/models';
 import { FileExplorer } from './components/FileExplorer';
 import { Search } from './components/Search';
+import { searchFiles } from './utils/filterItems';
 
 function App() {
   const [items, setItems] = useState<Item[]>([]);
   const [query, setQuery] = useState('');
 
   useEffect(() => {
-    setItems(documents);
-  }, []);
+    if (!query) setItems(documents);
+    else setItems(searchFiles(documents, query));
+  }, [query]);
 
   return (
     <>
