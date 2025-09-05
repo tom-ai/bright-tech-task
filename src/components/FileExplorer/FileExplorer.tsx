@@ -2,11 +2,13 @@ import type { Item } from '../../types/models';
 
 export function FileExplorer({ items }: { items: Item[] }) {
   return (
-    <ul className="file-list">
-      {items.map((item) => {
-        return ItemView({ item });
-      })}
-    </ul>
+    <section>
+      <ul className="file-list">
+        {items.map((item) => {
+          return ItemView({ item });
+        })}
+      </ul>
+    </section>
   );
 }
 
