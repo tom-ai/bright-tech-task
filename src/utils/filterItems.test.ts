@@ -37,4 +37,12 @@ describe('Filter Items', () => {
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('Company Handbook');
   });
+
+  it('should handle different cases', () => {
+    const result = items.filter((item) =>
+      filterItems(item, 'company handbook')
+    );
+    expect(result).toHaveLength(1);
+    expect(result[0].name).toBe('Company Handbook');
+  });
 });
