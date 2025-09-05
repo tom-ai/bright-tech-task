@@ -6,6 +6,7 @@ import { Search } from './components/Search';
 
 function App() {
   const [items, setItems] = useState<Item[]>([]);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     setItems(documents);
@@ -17,7 +18,7 @@ function App() {
         <h1>Bright Tech Task</h1>
       </header>
       <main>
-        <Search />
+        <Search value={query} onChange={setQuery} />
         <FileExplorer items={items} />
       </main>
     </>
