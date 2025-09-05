@@ -1,18 +1,12 @@
-import { documents } from './data/documents';
-import { useEffect, useState } from 'react';
-import type { Item } from './types/models';
+import { useState } from 'react';
 import { FileExplorer } from './components/FileExplorer';
 import { Search } from './components/Search';
-import { searchFiles } from './utils/filterItems';
+import { useDocuments } from './hooks/useDocuments';
 
 function App() {
-  const [items, setItems] = useState<Item[]>([]);
   const [query, setQuery] = useState('');
 
-  useEffect(() => {
-    if (!query) setItems(documents);
-    else setItems(searchFiles(documents, query));
-  }, [query]);
+  const { items } = useDocuments(query);
 
   return (
     <>
