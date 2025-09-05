@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { filterItems, searchFiles } from './filterItems';
+import { searchFiles } from './filterItems';
 import type { Item } from '../types/models';
 
 describe('Filter Items', () => {
@@ -36,30 +36,32 @@ describe('Filter Items', () => {
     expect(result[0].name).toBe('Company Handbook');
   });
 
-  // it('should handle different cases', () => {
-  //   const result = items.filter((item) =>
-  //     filterItems(item, 'company handbook')
-  //   );
-  //   expect(result).toHaveLength(1);
-  //   expect(result[0].name).toBe('Company Handbook');
-  // });
+  it('should handle different cases', () => {
+    const result = searchFiles(items, 'company handbook');
+    expect(result).toHaveLength(1);
+    expect(result[0].name).toBe('Company Handbook');
+  });
 
-  // it('should handle whitespace', () => {
-  //   const result = items.filter((item) =>
-  //     filterItems(item, '  company   handbook  ')
-  //   );
-  //   expect(result).toHaveLength(1);
-  //   expect(result[0].name).toBe('Company Handbook');
-  // });
+  it('should handle whitespace', () => {
+    const result = searchFiles(items, '  company   handbook  ');
+    expect(result).toHaveLength(1);
+    expect(result[0].name).toBe('Company Handbook');
+  });
 
-  // it('should not filter on folder names', () => {
-  //   const result = items.filter((item) => filterItems(item, 'Policies'));
-  //   expect(result).toHaveLength(0);
-  // });
+  it('should not filter on folder names', () => {
+    const result = searchFiles(items, 'Policies');
 
-  // it('should filter on nested files', () => {
-  //   const result = items.filter((item) => filterItems(item, 'Policy'));
-  //   expect(result).toHaveLength(1);
-  //   expect(result[0].name).toBe('Holiday Policy');
-  // });
+    expect(result).toHaveLength(0);
+  });
+
+  it('should filter on nested files', () => {
+    const result = searchFiles(items, 'Policy');
+    expect(result).toHaveLength(1);
+    expect(result[0].name).toBe('Holiday Policy');
+  });
+
+  it('should return empty array if given no search term', () => {
+    const result = searchFiles(items, '');
+    expect(result).toHaveLength(0);
+  });
 });
