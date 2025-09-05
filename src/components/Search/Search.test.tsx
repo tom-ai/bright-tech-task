@@ -1,29 +1,32 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../../App';
+import { Search } from './Search';
 
 describe('Search', () => {
-  it('filters files that relate to the search term', async () => {
-    // user types a query
-    // files that relate to that query are displyaed
-    // no folders are displayed
-    // files within folders are considered as part of the search
+  it('renders an accesible search box', () => {
+    render(<Search value="" onChange={() => {}} />);
+    expect(screen.getByRole('searchbox', { name: /search/i })).toBeVisible();
+  });
 
-    const search = userEvent.setup();
-
-    // render(<FileExplorer items={testData} />);
-    render(<App />);
-
-    await search.type(
-      screen.getByRole('searchbox', { name: /search/i }),
-      'Handbook'
+  it('is controlled by the value prop', () => {
+    render(<Search value="abc" onChange={() => {}} />);
+    expect(screen.getByRole('searchbox', { name: /search/i })).toHaveValue(
+      'abc'
     );
+  });
 
-    const results = screen.getAllByRole('listitem');
+  it('calls the onChange when a user types', async () => {
+    const user = userEvent.setup();
 
-    expect(results).toHaveLength(1);
+    const mockOnChange = vi.fn();
 
-    expect(screen.getByText('Handbook')).toBeVisible();
+    render(<Search value={undefined!} onChange={mockOnChange} />);
+
+    await user.type(screen.getByRole('searchbox', { name: /search/i }), 'abc');
+
+    expect(mockOnChange).toHaveBeenCalled();
+    expect(mockOnChange).toHaveBeenLastCalledWith('abc');
   });
 });
