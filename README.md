@@ -10,7 +10,7 @@ The original task is at https://github.com/brighthr/Front-End-Tech-Tasks/blob/ma
 
 ## General process
 
-1. Cretae type definitions and roughly map out data.
+1. Create type definitions and roughly map out data.
 2. Add tests around acceptance criteria (e.g. file name, type and date display correctly)
 3. Refactor UI and tidy up tests (because now I can mess around with things confidently)
 4. Repeat process with additional features such as filtering
