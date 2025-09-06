@@ -1,47 +1,41 @@
 # BrightHR Tech Task
 
-An SPA that displays files and folders. Built with React and TypeScript.
+A SPA that displays files and folders. Built with React and TypeScript.
+
+View the hosted version at [bright-tech-task.pages.dev](https://bright-tech-task.pages.dev)
+
+To run locally: clone this repo, install dependencies and run `npm run dev`. To run the tests, `npm run test`.
+
+The original task is at https://github.com/brighthr/Front-End-Tech-Tasks/blob/main/junior-and-middleweight.md
 
 ## General process
 
-1. get data mapped out roughly
-2. add some tests around acceptance criteria (e.g. file name, type, date all display correctly)
-3. refactor UI and tidy up tests (because now I can mess around with things confidently)
-
-## How I have used AI
-
-To assist making the types
-
-To guide through file strucutre
-
-For naming things! E.G. what name do you suggest for the JSON of data (i don't like "data/data.json"!)
-
-Make me some minimal test data I can use based on my data and types
+1. Cretae type definitions and roughly map out data.
+2. Add tests around acceptance criteria (e.g. file name, type and date display correctly)
+3. Refactor UI and tidy up tests (because now I can mess around with things confidently)
+4. Repeat process with additional features such as filtering
 
 ## Given More Time
 
-Allow for nested files and folders, using recursion to map them out.
+- Allow for nested files and folders, using recursion to map them out.
 
-Applied more TDD when rendering out the files and folders
+- Added sorting features.
 
-Squashed more commits. I'm leaving the histroy as verbose as possible for you!
+- Squashed more commits. I'm leaving the histroy as verbose as possible for you!
 
-Utilised query params torather than useState to hold search query data for nicer UX.
+- Utilised query params rather than useState to hold search query data for nicer UX.
 
-Tests around the hook.
+- Tests around the hook.
+
+- Memoised the filtered files with `useMemo`
+
+- Made naming conventions more consistent (e.g. 'docs'/'documents'/'data'/'items'/'files' etc!)
 
 ## Some challenges I came up against
 
-On the filtering, searching nested files in a folder I needed to run the function on itself. thinking I might need to flatten the data. Rather than creating a filter predicate I made a searchFiles function which flattened the data and returned a simple list of files that match the query.
+When filtering files, I initally used a `.fitler` directly on the data and made some tests around it. But I soon came up against a challenge when dealing with nested files in a folder. I needed to run the function on itself which started failing some tests. I therefore updated my function to flatten the data so I could filter only on files and exclude folders all together.
 
-Asking GPT on my filtering...
-Right now your filterItems is shaped like:
+## How I have used AI
 
-```function filterItems(item: Item, query: string): boolean
-so you end up doing:
-items.filter(item => filterItems(item, q));
-```
-
-That works fine for top-level files, but it falls apart for nested ones — because filter only works one level deep. You’d have to keep track of “did any child match?” and bubble that up… which is messy if you don’t want folders in your results.
-
-After replacing my filter predicate idea with a search files method I came to the point where I need to set state with either filtered files or all files and folders. It was at this point I decided i wanted to sort the items so all folders live at the top and files are below. Testing this in its current state would be difficult, so I am going to create a hook and test that the files and folders are sorted by default before they get mapped out or sorted.
+- Making test data based on my exisitng data and type definitions
+- Help with debugging some failed tests
