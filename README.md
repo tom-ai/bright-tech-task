@@ -1,6 +1,6 @@
 # BrightHR Tech Task
 
-A SPA that displays files and folders. Built with React and TypeScript.
+An SPA that displays files and folders. Built with React and TypeScript.
 
 View the hosted version at [bright-tech-task.pages.dev](https://bright-tech-task.pages.dev)
 
@@ -33,7 +33,7 @@ The original task is at https://github.com/brighthr/Front-End-Tech-Tasks/blob/ma
 
 ## Some challenges I came up against
 
-When filtering files, I initally used a `.fitler` directly on the data and made some tests around it. But I soon came up against a challenge when dealing with nested files in a folder. I needed to run the function on itself which started failing some tests. I therefore updated my function to flatten the data so I could filter only on files and exclude folders all together.
+When filtering files, I initally used a `.filter` directly on the data and made some tests around it. But I soon came up against a challenge when dealing with nested files in a folder. I needed to run the function on itself which started failing some tests. I therefore updated my function to flatten the data so I could filter only on files and exclude folders all together.
 
 ## How I have used AI
 
